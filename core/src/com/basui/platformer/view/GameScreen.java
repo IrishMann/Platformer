@@ -13,8 +13,9 @@ public class GameScreen implements Screen {
 
     public GameScreen() {
         map = new TmxMapLoader().load("map/map01.tmx"); //assigning the map variable to the map
-        renderer = new OrthogonalTiledMapRenderer(map, 1/70f); //
+        renderer = new OrthogonalTiledMapRenderer(map, 1/70f); //setting the mapping render style/type
         camera = new OrthographicCamera(14f, 14f); //assigning the camera to be something, 14f by 14f is # of tiles shown.
+        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight /2f, 0); //positioning the camera to be centered
     }
 
     @Override
