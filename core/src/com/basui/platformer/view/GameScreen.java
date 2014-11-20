@@ -1,5 +1,6 @@
 package com.basui.platformer.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -14,7 +15,13 @@ public class GameScreen implements Screen {
     public GameScreen() {
         map = new TmxMapLoader().load("map/map01.tmx"); //assigning the map variable to the map
         renderer = new OrthogonalTiledMapRenderer(map, 1/70f); //setting the mapping render style/type
-        camera = new OrthographicCamera(14f, 14f); //assigning the camera to be something, 14f by 14f is # of tiles shown.
+
+        //creating variables of type float number for the width and height of program/game window
+        //then assigning them to be the current width and height of program
+        float width = Gdx.graphics.getWidth();
+        float height = Gdx.graphics.getHeight();
+
+        camera = new OrthographicCamera(14f, 14f * height/width); //assigning the camera to be something, 14f by 14f is # of tiles shown.
         camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight /2f, 0); //positioning the camera to be centered
     }
 
