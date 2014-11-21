@@ -2,6 +2,7 @@ package com.basui.platformer.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -27,6 +28,9 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(0.20f, 0.2f, 0.3f, 1f); //set the color of the clear using values from colorpicker.com
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);   //clearing the screen with the color from the previous line
+
         camera.update(); //refreshing the camera every fps
         renderer.setView(camera); //setting the camera to be the active view (use the camera)
         renderer.render(); //rendering :D
@@ -34,7 +38,9 @@ public class GameScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        camera.viewportWidth = 14f; //fixing width/height ratio and updating the camera
+        camera.viewportHeight = 14f*height/width;
+        camera.update(); //updating camera
     }
 
     @Override
